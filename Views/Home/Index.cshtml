@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "الصفوف";
+}
+
+<nav>
+    <a class="logo" href="#" tabindex="7">
+        <img src="~/images/letterM.png">
+    </a>
+</nav>
+
+<a asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="9"></i></a>
+<a asp-action="Logout" asp-controller="Account" class="fas fa-user-cog" data-toggle="modal" data-target="#exampleModalForSetting" tabindex="8" title="تغيير كلمة المُرور">
+</a>
+
+<div class="row1">
+    <a asp-action="index" asp-controller="Class" asp-route-id="1" tabindex="1" title="الصفُ الدراسيُّ الأوَّل">الصفُ الدراسيُّ الأوَّل</a>
+    <br />
+    <a asp-action="index" asp-controller="Class" asp-route-id="2" tabindex="2" title="الصفُ الدراسيُّ الثانيُّ">الصفُ الدارسيُّ الثاني</a>
+    <br />
+    <a asp-action="index" asp-controller="Class" asp-route-id="3" tabindex="3" title="الصفُ الدراسيُّ الثالث">الصفُ الدراسيُّ الثالث</a>
+</div>
+
+<!--=================================================================================================================================-->
+<!--This is for modal of the setting icon-->
+
+<div class="modal fade" id="exampleModalForSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelOfNewPassword">تعديلُ كلمة المُرور</h5>
+            </div>
+            <div class="modal-body">
+                <form asp-action="ChangePassword" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        <input name="oldPassword" type="password" class="form-control" id="oldPassword" style="text-align:right;" placeholder="كلمةُ المُرور القديمة"><br>
+                        <input name="newPassword" type="password" class="form-control" id="newPassword" placeholder="كلمةُ المُرور الجديدة">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
+                        <button type="submit" class="btn btn-primary">تعديلُ الآن</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================================================================================================================================-->
+<link rel="stylesheet" href="~/css/styleStages.css" />

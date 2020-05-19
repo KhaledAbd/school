@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200515230029_schoolMigration.cs" />
+    <Compile Remove="Migrations\20200515230029_schoolMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\js\bootbox.min.js" />
+    <None Include="wwwroot\js\bootstrap-toggle.min.js" />
+    <None Include="wwwroot\js\bootstrap-toggle.min.js.map" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\custom-addClass.js" />
+    <None Include="wwwroot\js\custom-classes.js" />
+    <None Include="wwwroot\js\custom-editClass.js" />
+    <None Include="wwwroot\js\custom-hello.js" />
+    <None Include="wwwroot\js\custom-index.js" />
+    <None Include="wwwroot\js\custom-stages.js" />
+    <None Include="wwwroot\js\html5shiv.min.js" />
+    <None Include="wwwroot\js\jquery-3.4.1.min.js" />
+    <None Include="wwwroot\js\jquery-confirm.js" />
+    <None Include="wwwroot\js\loader.js" />
+    <None Include="wwwroot\js\printThePage.js" />
+    <None Include="wwwroot\js\semantic.min.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\studentTable.js" />
+    <None Include="wwwroot\js\timeOfAbsents.js" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\webfonts\i7dRIFFzbz-QHZUdV9_UGWZuWIq-Cw20akyG.woff2" />
+    <None Include="wwwroot\webfonts\i7dRIFFzbz-QHZUdV9_UGWZuWIq-CwO0ag.woff2" />
+    <None Include="wwwroot\webfonts\i7dRIFFzbz-QHZUdV9_UGWZuWIq-Cwy0akyG.woff2" />
+    <None Include="wwwroot\webfonts\i7dRIFFzbz-QHZUdV9_UGWZuWIq-CyC0akyG.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-black-webfont.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-bold-webfont.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-extralight-webfont.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-light-webfont.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-regular-webfont.woff2" />
+    <None Include="wwwroot\webfonts\woff\cairo-semibold-webfont.woff2" />
+    <None Include="wwwroot\webfonts\zrfl0HLVx-HwTP82Yaf4Iw.woff2" />
+    <None Include="wwwroot\webfonts\zrfl0HLVx-HwTP82Yaj4IxL0.woff2" />
+    <None Include="wwwroot\webfonts\zrfl0HLVx-HwTP82Yan4IxL0 %281%29.woff2" />
+    <None Include="wwwroot\webfonts\zrfl0HLVx-HwTP82Yan4IxL0.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+  </ItemGroup>
+
+</Project>

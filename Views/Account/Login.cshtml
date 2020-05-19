@@ -1,0 +1,24 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Login";
+}
+
+<nav>
+    <a class="logo" href="#">
+        <img src="~/images/letterM.png">
+    </a>
+</nav>
+
+<!--=====================================================================================================================================-->
+<!--Box of the login-->
+<div class="box-login">
+    <div class="top-div">
+        <img src="~/images/avatar.png ">
+    </div>
+    <form asp-action="Login" method="POST">
+        <input asp-for="@Model.UserName" type="text" placeholder="Username" id="myUsername" /><br>
+        <input asp-for="@Model.Password" type="password" placeholder="Password" id="myPassword" /><br>
+        <button type="submit" >login</button>
+    </form>
+    <p>&copy; School App</p>
+</div>
