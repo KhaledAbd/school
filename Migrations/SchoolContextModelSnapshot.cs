@@ -80,7 +80,10 @@ namespace school.Migrations
                     b.Property<int?>("ClassFk")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StageId")
+                    b.Property<bool>("IsReject")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NumOfReject")
                         .HasColumnType("int");
 
                     b.Property<string>("StudentName")
@@ -89,11 +92,12 @@ namespace school.Migrations
                     b.Property<int?>("TimeAbsent")
                         .HasColumnType("int");
 
+                    b.Property<int>("TimeAbsentDaily")
+                        .HasColumnType("int");
+
                     b.HasKey("StudentId");
 
                     b.HasIndex("ClassFk");
-
-                    b.HasIndex("StageId");
 
                     b.ToTable("Student");
                 });
@@ -153,10 +157,6 @@ namespace school.Migrations
                     b.HasOne("school.Models.Class", "ClassNavigation")
                         .WithMany("Student")
                         .HasForeignKey("ClassFk");
-
-                    b.HasOne("school.Models.Stage", null)
-                        .WithMany("StudentNavigation")
-                        .HasForeignKey("StageId");
                 });
 
             modelBuilder.Entity("school.Models.StudentAbsent", b =>

@@ -17,18 +17,19 @@ namespace school.Controllers
         {
             this.context = context;
         }
-        public async Task<IActionResult> Index() => View(await context.Absent.Select(a => a.DateAbsent.Month).Distinct().ToListAsync());
+        public async Task<IActionResult> Index() => View(await context.Absent.Select(a => a.DateAbsent.Month ).Distinct().ToListAsync());
         
 
-        public async Task<IActionResult> Table(int? id)
+        public async Task<IActionResult> Table(int month, int year)
         {
             
             int? cls = HttpContext.Session.GetInt32("Class");
-            ViewData["Month"] = id;
+            ViewData["Month"] = month;
             var students = await context.Student.Where(c => c.ClassFk == cls).ToListAsync();
             AbsentCelander absentCelander = new AbsentCelander()
             {
-                month = id.Value
+                month = month,
+                year = year
             };
 
             absentCelander.SetNumOfDay();

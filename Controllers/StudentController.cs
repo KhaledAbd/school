@@ -26,6 +26,7 @@ namespace school.Controllers
             {
                 HttpContext.Session.SetString("ClassString", cls.Name);
             }
+            ViewData["ListClasses"] = context.Class.Where(c => c.Stage == cls.Stage && c.Id != id.Value);
             return View(await context.Student.Where(s=>s.ClassFk == id).ToListAsync());
         }
     }

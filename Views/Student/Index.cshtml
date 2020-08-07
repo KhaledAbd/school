@@ -2,208 +2,213 @@
 @{
     ViewData["Title"] = "Index";
     int count = 1;
+    ViewData["isNotAllow"] = true;
+    IEnumerable<Class> classes = ViewData["ListClasses"] as IEnumerable<Class>;
 }
-<div id="myDiv">
-    <nav class="navbar navbar-expand-sm navbar-dark justify-content-center" id="navbar-expand-sm">
-        <ul class="navbar-nav">
-            <li class="nav-item list-inline-item">
-                <a class="nav-link" href="/Home/Index"><i class="fas fa-home" title="الصفحةُ الرئيسية"></i></a>
-            </li>
-            <li class="nav-item list-inline-item">
-                <a class="nav-link" href="/Home/Index"><i class="fas fa-university" title="السنواتُ الدراسيّة"></i></a>
-            </li>
-            <li class="nav-item list-inline-item">
-                <a class="nav-link" href="/Class/Index/"><i class="fas fa-chalkboard-teacher" title="الفُصول الدراسيّة"></i></a>
-            </li>
-            <li class="nav-item list-inline-item">
-                <a class="nav-link">
-                    <i class="fas fa-user-plus" data-toggle="modal" data-target="#exampleModal" title="اضافةُ طالبٍ جديد">
-                    </i>
-                </a>
-            </li>
-        </ul>
-        <i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="9"></i>
-        <a class="fas fa-user-cog" data-toggle="modal" data-target="#exampleModalForSetting" tabindex="8" title="تغيير كلمة المُرور"></a>
-    </nav>
-    <!--=================================================================================================================================-->
-    <!--This is for modal of the setting icon-->
-
-    <div class="modal fade" id="exampleModalForSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabelOfNewPassword">تعديلُ كلمة المُرور</h5>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="oldPassword" placeholder="كلمةُ المُرور القديمة"><br><br>
-                            <input type="password" class="form-control" id="newPassword" placeholder="كلمةُ المُرور الجديدة">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
-                    <button type="button" class="btn btn-primary">تعديلُ الآن</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--=================================================================================================================================-->
-    <!--This is for the search box -->
-    <div class="search" id="searchInput">
-        <form class="search-form">
-            <input type="text" id="myInputForSearching" onkeyup="functionForSearchingInTable()" placeholder=" .... ابحَثْ عن طالبٍ في الفصلِ الحالي" tabindex="1">
-            <input type="submit" value="بحث">
-        </form>
-    </div>
-
-    <!--=================================================================================================================================-->
-    <!--The Table of the student-->
-    <div class="container">
-        <div class="table-responsive table-striped">
-            <table class="table table-striped m-0" id="myTable">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">العمليات</th>
-                        <th scope="col">الغياب</th>
-                        <th scope="col">اسمُ الطالب</th>
-                        <th scope="col">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var student in Model)
-                    {
-                        <tr>
-                            <td>
-                                <!-- Call to action buttons -->
-                                <ul class="list-inline m-0">
-
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-10 myDeleteButton" type="button" data-toggle="tooltip" data-placement="top" tabindex="6"><i class="fa fa-trash" title="حذفُ الطالبِ من الفصل"></i></button>
-                                    </li>
-
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-primary btn-sm rounded-10" type="button" data-toggle="modal" data-target="#myModal" data-placement="top" tabindex="5">
-                                            <i title="نقلُ الطالب لفصلٍ آخر" class="fa fa-plus"></i>
-                                        </button>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button class="btn btn-success btn-sm rounded-10" type="button" data-placement="top" data-toggle="modal" data-target="#exampleModalCenter" tabindex="4">
-                                            <i title="تعديلُ بياناتِ الطالب" class="fa fa-edit"></i>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <input class="myCheckbox" type="checkbox" unchecked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" data-on="غائب" data-off="حاضر" data-style="slow" data-size="lg" data-width="100">
-                            </td>
-                            <td tabindex="@{++count;} ">@student.StudentName</td>
-                            <th scope="row" hidden>@student.StudentId</th>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <a class="btn btn-primary" id="addAbsent">أضافة الغياب</a>
-            </div>
-        </div>
-        <!--=================================================================================================================================-->
-        <!--This is for adding new student in the class-->
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="myDiv">
+        <nav class="navbar navbar-expand-sm navbar-dark justify-content-center" id="navbar-expand-sm">
+            <ul class="navbar-nav">
+                <li class="nav-item list-inline-item">
+                    <a class="nav-link" href="/Home/Index"><i class="fas fa-home" title="الصفحةُ الرئيسية"></i></a>
+                </li>
+                <li class="nav-item list-inline-item">
+                    <a class="nav-link" href="/Stage/Index"><i class="fas fa-university" title="السنواتُ الدراسيّة"></i></a>
+                </li>
+                <li class="nav-item list-inline-item">
+                    <a class="nav-link" onkeypress="goStage()" onclick="goStage()"><i class="fas fa-chalkboard-teacher" title="الفُصول الدراسيّة"></i></a>
+                </li>
+                <li class="nav-item list-inline-item">
+                    <a class="nav-link">
+                        <i class="fas fa-user-plus" data-toggle="modal" data-target="#exampleModal" title="اضافةُ طالبٍ جديد">
+                        </i>
+                    </a>
+                </li>
+            </ul>
+            <a asp-action="Logout" asp-controller="Account">  <i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="4"></i> </a>
+            <button class="fas fa-user-cog" data-toggle="modal" data-target="#exampleModalForSetting" tabindex="3" title="تغيير كلمة المُرور">
+            </button>
+        </nav>
+        <div class="modal fade" id="exampleModalForSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">اضافةُ طالبٍ جديد</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="غلقُ الأيقونة">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="modalLabelOfNewPassword">تعديلُ كلمة المُرور</h5>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label"> : اسمُ الطالب</label>
-                                <input type="text" class="form-control" id="recipient-name" placeholder="اسمُ الطالب المُراد اضافتِه">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="oldPassword" placeholder="كلمةُ المُرور القديمة"><br>
+                            <input type="password" class="form-control" id="newPassword" placeholder="كلمةُ المُرور الجديدة">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
-                        <button type="button" id="addStudent" class="btn btn-success">اضافة</button>
+                        <button type="button" class="btn btn-primary">تعديلُ الآن</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!--===============================================    onkeyup="functionForSearchingInTable()" ==================================================================================-->
+        <!--This is for the search box -->
+        <div class="search" id="searchInput">
+            <form class="search-form">
+                <input type="text" id="myInputForSearching" placeholder=" .... ابحَثْ عن طالبٍ في الفصلِ الحالي" tabindex="1">
+                <input type="submit" value="بحث">
+            </form>
+        </div>
+
         <!--=================================================================================================================================-->
-        <!--This is for adding the student for the another class-->
+        <!--The Table of the student-->
+        <div class="container">
+            <div class="table-responsive table-striped">
+                <table class="table table-striped m-0" id="myTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">العمليات</th>
+                            <th scope="col">الغياب</th>
+                            <th scope="col">اسمُ الطالب</th>
+                            <th scope="col" hidden>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var student in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <!-- Call to action buttons -->
+                                    <ul class="list-inline m-0">
 
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-danger btn-sm rounded-10 myDeleteButton" type="button" data-toggle="tooltip" data-placement="top" tabindex="6" onclick="deleteStd(this)"><i class="fa fa-trash" title="حذفُ الطالبِ من الفصل"></i></button>
+                                        </li>
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">نقلُ الطالب</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-primary btn-sm rounded-10" type="button" data-toggle="modal" data-target="#myModal" onclick="transferStd(this)" data-placement="top" tabindex="5">
+                                                <i title="نقلُ الطالب لفصلٍ آخر" class="fa fa-plus"></i>
+                                            </button>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <button class="btn btn-success btn-sm rounded-10" type="button" data-placement="top" data-toggle="modal" onclick="changeName(this)" data-target="#exampleModalCenter" tabindex="4">
+                                                <i title="تعديلُ بياناتِ الطالب" class="fa fa-edit"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <input class="myCheckbox" type="checkbox" unchecked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" data-on="غائب" data-off="حاضر" data-style="slow" data-size="lg" data-width="100">
+                                </td>
+                                <td tabindex="@{++count;}">@student.StudentName</td>
+                                <th scope="row" hidden>@student.StudentId</th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body bodyOfTheEditingModal">
-                        <form class="form-inline">
-
-                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option selected>الفصلُ المُراد نقل الطالب له...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-
-                            <button type="submit" class="btn btn-primary my-1">حفظُ التغييرات</button>
-                        </form>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger closeTheEditingModal" data-dismiss="modal">غلقُ التعديلات</button>
-                    </div>
-
+            <div class="row">
+                <div class="col-md-3">
+                    <a class="btn btn-primary" id="addAbsent">أضافة الغياب</a>
                 </div>
             </div>
-        </div>
-        <!--=================================================================================================================================-->
-        <!--This is for the checking the editing operation-->
-        <!-- Button trigger modal -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">تعديلُ الاسم الخاص بالطالب</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="اسمُ الطالب قبل التعديل" aria-describedby="basic-addon2" disabled>
+            <!--=================================================================================================================================-->
+            <!--This is for adding new student in the class-->
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">اضافةُ طالبٍ جديد</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="غلقُ الأيقونة">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="اسمُ الطالب بعد التعديل" aria-describedby="basic-addon2">
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label"> : اسمُ الطالب</label>
+                                    <input type="text" class="form-control" id="recipient-name" placeholder="اسمُ الطالب المُراد اضافتِه">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
+                            <button type="button" id="addStudent" class="btn btn-success">اضافة</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">إلغاء</button>
-                        <button type="button" class="btn btn-primary">حِفظُ التعديل الآن</button>
+                </div>
+            </div>
+            <!--=================================================================================================================================-->
+            <!--This is for adding the student for the another class-->
+
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">نقلُ الطالب</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body bodyOfTheEditingModal">
+                            <form class="form-inline">
+
+                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option selected disabled>الفصلُ المُراد نقل الطالب له...</option>
+                                    @foreach (var cls in classes)
+                                    {
+                                        <option value="@cls.Id">@cls.Stage/@cls.Name</option>
+                                    }
+                                </select>
+
+                                <button type="button" class="btn btn-primary my-1" id="transfer">حفظُ التغييرات</button>
+                            </form>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger closeTheEditingModal" data-dismiss="modal" id="closeTrans">غلقُ التعديلات</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--=================================================================================================================================-->
+            <!--This is for the checking the editing operation-->
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">تعديلُ الاسم الخاص بالطالب</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <input type="text" id="oldName" class="form-control" placeholder="اسمُ الطالب قبل التعديل" aria-describedby="basic-addon2" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="اسمُ الطالب بعد التعديل" aria-describedby="basic-addon2" id="stdName">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelModel">إلغاء</button>
+                            <button type="button" class="btn btn-primary" id="changeName">حِفظُ التعديل الآن</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <link rel="stylesheet" href="~/css/studentTable.css" />
 <script src="~/js/studentTable.js "></script>
+
+<script>
+    function goStage() {
+        window.open('/Class/Index/' + localStorage.getItem('stageId'), '_self');
+    }
+</script>

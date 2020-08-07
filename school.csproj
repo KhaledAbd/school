@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\js\alertifyjs\alertify.js" />
+    <None Include="wwwroot\js\alertifyjs\alertify.min.js" />
     <None Include="wwwroot\js\bootbox.min.js" />
     <None Include="wwwroot\js\bootstrap-toggle.min.js" />
     <None Include="wwwroot\js\bootstrap-toggle.min.js.map" />
@@ -18,7 +20,6 @@
     <None Include="wwwroot\js\bootstrap.min.js.map" />
     <None Include="wwwroot\js\custom-addClass.js" />
     <None Include="wwwroot\js\custom-classes.js" />
-    <None Include="wwwroot\js\custom-editClass.js" />
     <None Include="wwwroot\js\custom-hello.js" />
     <None Include="wwwroot\js\custom-index.js" />
     <None Include="wwwroot\js\custom-stages.js" />
@@ -61,7 +62,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
 </Project>

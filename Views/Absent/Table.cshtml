@@ -3,122 +3,102 @@
     ViewData["Title"] = "Table";
 }
 
+        <div id="cont">
+            <div class="myH2">
+                <div class="leftDiv">
+                    <h2 class="left-1" id="stageTable"> : المرحلةُ الدراسيّة</h2>
+                    <h2 class="left-2" id="classTable"> : الفصلُ الدراسيّ</h2>
+                </div>
+                <div class="rightDiv">
+                    <h2 class="right-h2" id="schoolTable"> : اسمُ المدرسة</h2>
+                    <h2 class="right-h2"> @Model.month : سردٌ لغياب شهر</h2>
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <h2 class="centerized"> : كشفُ أسماء لغياب طُلاب فصل</h2>
+            </div>
 
-<h2 style="text-align:center">كشف أسماء غياب الطُلاب</h2>
+            <table style="width: 100%; margin-left:auto; margin-right:auto;" border="1" >
 
-<div id="absentPaper">
-    <div style="margin-top: 20px; font-family: 'Amiri', serif; font-size: 10px; text-align: center;">
-        <!--Edit the names-->
+                <thead style="background-color: #dfe4ea;" >
+                    <tr>
 
-        <h1>اسمُ المَدرسةِ : الحديثة</h1>
-        <h1>الصفُ الدراسيٌّ : الثاني</h1>
-        <h1>الفصلُ : الأول</h1>
-        <h2>لشهر : @ViewBag.Month</h2>
-    </div>
 
-    <h1 style="text-align: center; margin-top: 40px; font-family: 'Amiri', serif; font-size: 30px;">أسماءُ غيابِ الطُلابِ </h1>
-
-    <div id="printableDiv">
-        <style>
-            /*This is properities of table*/
-
-            table, th, td {
-                padding: 10px;
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-
-            th {
-                height: 10px;
-                width: 30px;
-            }
-        </style>
-    </div>
-
-    <table style="width: 100%; margin-left:auto; margin-right:auto;" border="1">
-
-        <thead style="background-color: #dfe4ea;">
-            <tr>
-
-                <th width="25%" style="text-align:center;">اسم الطالب</th>
-
-                @for (int i = 1; i <= Model.NumOfDay; i++)
-                {
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Saturday)
-                    {
-                        <th>س</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        <th>ح</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Monday)
-                    {
-                        <th>ن</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Tuesday)
-                    {
-                        <th>ث</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Wednesday)
-                    {
-                        <th>ع</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Thursday)
-                    {
-                        <th>خ</th>
-                    }
-                    if (Model.startDate.DayOfWeek == DayOfWeek.Friday)
-                    {
-                        <th>ج</th>
-
-                    }
-
-                    Model.startDate = Model.startDate.AddDays(1);
-
-                }
-            </tr>
-
-        </thead>
-        <tbody style="text-align: center;">
-            @for (int i = 0; i < Model.Students.Length; i++)
-            {
-                <tr>
-                    <td style="text-align: center; font-weight:bold;">@Model.Students[i]</td>
-
-                @for (int j = 0; j < Model.NumOfDay; j++)
-                    {
-                    if (Model.absentMat[i, j] != null)
-                    {
-                        if (Model.absentMat[i, j].Value)
+                        @for (int i = 1; i <= Model.NumOfDay; i++)
                         {
-                            <td style="font-weight:bold;">غ</td>
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Saturday)
+                            {
+                                <th scope="col" class="th-edit">س</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                <th scope="col" class="th-edit">ح</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Monday)
+                            {
+                                <th scope="col" class="th-edit">ن</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Tuesday)
+                            {
+                                <th scope="col" class="th-edit">ث</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Wednesday)
+                            {
+                                <th scope="col" class="th-edit">ع</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Thursday)
+                            {
+                                <th scope="col" class="th-edit">خ</th>
+                            }
+                            if (Model.endDate.DayOfWeek == DayOfWeek.Friday)
+                            {
+                                <th scope="col" class="th-edit">ج</th>
+
+                            }
+
+                            Model.endDate = Model.endDate.AddDays(-1);
+
                         }
-                        if (!Model.absentMat[i, j].Value)
-                        {
-                            <td style="font-weight:bold;">ح</td>
-                        }
-                    }
-                    else
+                        <th scope="col" class="th-edit" style="font-size: 12px; width: 7.8%;">اسم الطالب</th>
+                    </tr>
+
+                </thead>
+                <tbody style="text-align: center;">
+                    @for (int i = 0; i < Model.Students.Length; i++)
                     {
-                        <td style="font-weight:bold;">_</td>
+                    <tr>
 
+                        @for (int j = Model.NumOfDay - 1; j >= 0; j--)
+                        {
+                            if (Model.absentMat[i, j] != null)
+                            {
+                                if (Model.absentMat[i, j].Value)
+                                {
+                                    <td scope="col"><i class="fa fa-times"></i></td>
+
+                                }
+                                if (!Model.absentMat[i, j].Value)
+                                {
+                                    <td scope="col"><i class="fas fa-check"></i></td>
+
+                                }
+                            }
+                            else
+                            {
+                                <td scope="col">_</td>
+                            }
+                        }
+                        <td scope="col" style="font-size: 12px; width: 7.8%;">@Model.Students[i]</td>
+                    </tr>
                     }
-                }
-
-
-
-
-
-                </tr>
-            }
-        </tbody>
-    </table>
-    <br>
-    <br />
-</div>
-
-<input value="اطبع" class="btn btn-danger" onclick="return print('absentPaper')" type="button" tabindex="1"
-       style="margin-left:1%; width:140px; background-color:#0984e3; color:#FFFFFF; cursor:pointer;
+                </tbody>
+            </table>
+            <br>
+            <br />
+        </div>
+        <div class="form-control">
+            <input value="اطبع" class="btn btn-danger" onclick="return print('absentPaper')" type="button" tabindex="1"
+                   style="margin-left:1%; width:140px; background-color:#0984e3; color:#FFFFFF; cursor:pointer;
             font-size:16px; border: solid 2px #0984e3; border-radius:10px;" />
-
+        </div>  
+<link href="~/css/showAbsentsThePage.css" rel="stylesheet" />

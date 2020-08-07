@@ -3,13 +3,6 @@
     ViewData["Title"] = "Index";
 }
 
-<nav>
-    <a class="logo" href="#" tabindex="4">
-        <img src="images/letterM.png">
-    </a>
-</nav>
-
-
 <nav class="navbar navbar-expand-sm navbar-dark justify-content-center">
     <ul class="navbar-nav">
         <li class="nav-item list-inline-item">
@@ -31,11 +24,13 @@
 
 
 <div class="row2">
-    @foreach (int month in Model)
+    @foreach (var month in Model)
     {
-        <a asp-action="Table" asp-controller="Absent" asp-route-id="@month" title="الشهر @month">الشهر @month</a>
+
+    <a asp-action="Table" asp-controller="Absent"
+       asp-route-month="@month" asp-route-year="2020" title="الشهر @month">الشهر @month </a>
     }
 </div>
 
-<link rel="stylesheet" href="~.css/styleClasses.css" />
+<link rel="stylesheet" href="~/css/styleClasses.css" />
 <script src="~/js/custom-classes.js"></script>

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "الصفوف";
+}
+
+<div class="row1">
+    <a asp-action="index" asp-controller="Class" asp-route-id="1" tabindex="1" title="الصفُ الدراسيُّ الأوَّل" onclick="setStage(1, 'الصفُ الدراسيُّ الأوَّل')">الصفُ الدراسيُّ الأوَّل</a>
+    <br />
+    <a asp-action="index" asp-controller="Class" asp-route-id="2" tabindex="2" title="الصفُ الدراسيُّ الثانيُّ" onclick="setStage(2, 'الصفُ الدارسيُّ الثاني')">الصفُ الدارسيُّ الثاني</a>
+    <br />
+    <a asp-action="index" asp-controller="Class" asp-route-id="3" tabindex="3" title="الصفُ الدراسيُّ الثالث" onclick="setStage(3,'الصفُ الدراسيُّ الثالث')">الصفُ الدراسيُّ الثالث</a>
+</div>
+
+<link rel="stylesheet" href="~/css/styleStages.css" />

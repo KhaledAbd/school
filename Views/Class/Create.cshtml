@@ -3,8 +3,8 @@
     ViewData["Title"] = "اضافة فصل";
 }
 <nav>
-    <a class="logo" href="#" tabindex="7">
-        <img src="images/letterM.png">
+    <a class="logo" tabindex="7">
+        <img src="~/images/letterM.png">
     </a>
 </nav>
 
@@ -14,56 +14,35 @@
             <a class="nav-link" href="/Home/Index" tabindex="3"><i class="fas fa-home" title="الصفحةُ الرئيسية"></i></a>
         </li>
         <li class="nav-item list-inline-item">
-            <a class="nav-link" href="/Home/Index" tabindex="4"><i class="fas fa-chalkboard-teacher" title="الفُصول الدراسيّة"></i></a>
+            <a class="nav-link" onkeypress="goStage()" onclick="goStage()" tabindex="4"><i class="fas fa-chalkboard-teacher" title="الفُصول الدراسيّة"></i></a>
         </li>
         <li class="nav-item list-inline-item">
-            <a class="nav-link" href="" tabindex="5"><i class="fas fa-university" title="السنواتُ الدراسيّة"></i></a>
+            <a class="nav-link" href="/Stage/Index" tabindex="5"><i class="fas fa-university" title="السنواتُ الدراسيّة"></i></a>
         </li>
         <li class="nav-item list-inline-item">
-            <a class="nav-link" href="#" tabindex="6"><i class="fas fa-edit" title="تعديلُ اسمِ الفصلِ"></i></a>
+            <a class="nav-link" asp-action="ListClass" asp-controller="Class"  tabindex="6"><i class="fas fa-edit" title="تعديلُ اسمِ الفصلِ"></i></a>
         </li>
     </ul>
 </nav>
 
 <h4>اضافةُ فصلٍ</h4>
-
-<i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="9"></i>
-<button class="fas fa-user-cog" data-toggle="modal" data-target="#exampleModalForSetting" tabindex="8" title="تغيير كلمة المُرور">
-</button>
-
 <form asp-action="Create" asp-controller="Class" method="post">
     <div class="add-classes">
         <input asp-for="@Model.Name" type="text" id="newClassName" placeholder="اسمُ الفصلِ الجديدِ" tabindex="1">
         <br>
-            <select asp-for="@Model.Stage" asp-items="@ViewBag.Stage as SelectList" class="custom-select-sm" placeholder="الصفُّ الدراسيُّ الأول">
-            </select>
-            <br>
-            <button type="submit" tabindex="2">اضافةُ الفصل</button>
-        </div>
-</form>
-<!--=================================================================================================================================-->
-<!--This is for modal of the setting icon-->
-
-<div class="modal fade" id="exampleModalForSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabelOfNewPassword">تعديلُ كلمة المُرور</h5>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="oldPassword" placeholder="كلمةُ المُرور القديمة"><br>
-                        <input type="password" class="form-control" id="newPassword" placeholder="كلمةُ المُرور الجديدة">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
-                <button type="button" class="btn btn-primary">تعديلُ الآن</button>
-            </div>
-        </div>
+        @*<select asp-for="@Model.Stage" asp-items="@ViewBag.Stage as SelectList" class="custom-select-sm" placeholder="الصفُّ الدراسيُّ الأول">
+        </select>*@
+        <input type="text" id="stageName" disabled />
+        <br>
+        <button type="submit" tabindex="2">اضافةُ الفصل</button>
     </div>
-</div>
+</form>
 <script src="~/js/custom-addClass.js "></script>
 <link rel="stylesheet" href="~/css/addClass.css" />
+
+
+<script>
+    function goStage() {
+        window.open('/Class/Index/' + localStorage.getItem('stageId'), '_self');
+    }
+    </script>

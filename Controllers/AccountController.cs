@@ -52,7 +52,7 @@ namespace school.Views.Home
                 var principal = new ClaimsPrincipal(identity);
 
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Stage");
             }
             return View();
         }
@@ -63,21 +63,10 @@ namespace school.Views.Home
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
-        [HttpPost]
-        public async Task<IActionResult> ChangePassword(string oldPassword, string newPassword)
+
+        public async Task<IActionResult> AccountInfo()
         {
-            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
-            {
-                ModelState.AddModelError("", "لم يتم تغير الباسورد");
-            }
-            var user = await context.User.Where(u => u.UserName == User.Identity.Name).FirstOrDefaultAsync();
-            if(string.Equals(user.Password,oldPassword)) { 
-                user.Password = newPassword;
-                context.Update(user);
-                await context.SaveChangesAsync();
-                return await Logout();
-            }
-            return RedirectToAction("Index", "Home");
+            return View(model: User.Identity.Name);
         }
     }
 }

@@ -28,17 +28,19 @@ namespace school
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SchoolContext>(optien => optien.UseSqlServer(Configuration.GetConnectionString("school")));
+       
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(600);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(4);
 
                 options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Home/AccessDenied";
+                options.AccessDeniedPath = "/Stage/AccessDenied";
                 options.SlidingExpiration = true;
             });
+            
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(600);
+                options.IdleTimeout = TimeSpan.FromMinutes(4);
             });
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc(o => o.EnableEndpointRouting = false);
@@ -60,7 +62,7 @@ namespace school
             {
                 route.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}"
+                    template: "{controller=Stage}/{action=Index}/{id?}"
                     );
             });
         }

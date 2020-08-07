@@ -290,75 +290,113 @@ nav .logo img {
 
 /*=============================================== End Navbar ===============================================*/
 
-h4 {
-    margin-top: 10%;
-    text-align: center;
-    font-size: 25px;
-    font-family: 'Lalezar', cursive;
-    letter-spacing: 2px;
-    animation: moveToRight 1s;
-}
-
-.edit-cls {
-    width: 400px;
-    height: 330px;
-    margin: 2% auto;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.89);
-    animation: moveToRight 2.5s;
-}
-
-.edit-cls input {
-    width: 90%;
-    padding: 10px;
-    margin: auto;
-    margin-top: 4px;
-    display: block;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-    border-bottom: 3px solid rgb(255, 255, 255);
-    border-radius: 6px;
-    color: #FFF;
+.table-responsive {
+    position: relative;
+    width: 70%;
+    height: auto;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgba(36, 36, 36, 1);
+    font-family: 'Cairo', sans-serif;
     letter-spacing: 1px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
+    animation: moveToRight 3s;
 }
 
-.edit-cls input:focus,
-.edit-cls input:focus {
-    box-shadow: 1px 1px 15px 2px rgb(255, 255, 255);
-}
-
-.edit-cls a {
-    width: 90%;
-    height: 40px;
-    float: left;
-    color: black;
-    display: block;
-    padding: 7px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 10px;
-    background-color: rgb(65, 95, 160);
-    border-radius: 10px;
-    text-decoration: none;
-    letter-spacing: 1px;
+.table-responsive th {
     font-size: 18px;
-    font-family: 'Lalezar', cursive;
+    letter-spacing: 3px;
 }
 
-#modalLabelOfNewPassword {
+.table-responsive td,
+th {
+    text-align: center;
+}
+
+.table-striped {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.table th,
+.table td {
+    color: #FFF;
+    font-size: 13px;
+}
+
+.modal-title {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-#newPassword,
-#oldPassword {
+.form-control {
+    float: right;
     text-align: end;
+}
+
+.col-form-label {
+    float: right;
+    font-weight: bold;
+}
+
+.differentTable,
+.differentTable td {
+    border-color: black;
+}
+
+
+/* ===========================
+   ====== Search Box ====== 
+   =========================== */
+
+.search-listClass {
+    width: 74%;
+    border: 2px solid rgb(52, 58, 64);
+    overflow: auto;
+    margin-top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    animation: moveToRight 3s;
+}
+
+.search-listClass input[type="text"] {
+    border: 0px;
+    width: 90%;
+    padding: 10px 10px;
+    float: right;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    background-color: rgb(52, 58, 64);
+}
+
+.search-listClass input[type="text"]:focus {
+    outline: 0;
+    font-weight: bolder;
+    color: #545ead;
+}
+
+.search-listClass input[type="submit"] {
+    width: 10%;
+    border: none;
+    background-color: rgb(65, 95, 160);
+    color: #fff;
+    float: right;
+    padding: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.search-listClass input[type="submit"]:hover {
+    transition: 1s;
+    background-color: rgb(66, 101, 175);
 }
 
 @media (min-width: 500px) and (max-width: 575px) {
@@ -402,16 +440,22 @@ h4 {
         color: rgb(29, 23, 23);
         font-size: 20px;
     }
-    .edit-cls {
-        width: 300px;
-        height: 330px;
-        margin: 2% auto;
+    .table-responsive {
+        width: 100%;
+        height: auto;
+        top: 55px;
     }
-    .edit-cls a {
-        width: 90%;
-        height: 40px;
-        padding: 9px;
-        font-size: 14px;
+    .table-responsive th {
+        font-size: 10px;
+    }
+    .table-responsive td {
+        font-size: 10px;
+    }
+    .search-listClass {
+        width: 76%;
+        margin-top: 25%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -455,16 +499,22 @@ h4 {
         color: rgb(29, 23, 23);
         font-size: 21px;
     }
-    .edit-cls {
-        width: 300px;
-        height: 330px;
-        margin: 2% auto;
+    .table-responsive th {
+        font-size: 15px;
     }
-    .edit-cls a {
-        width: 90%;
-        height: 40px;
-        padding: 9px;
-        font-size: 16px;
+    .table-responsive td {
+        font-size: 12px;
+    }
+    .table-responsive {
+        width: 100%;
+        height: auto;
+        top: 50px;
+    }
+    .search-listClass {
+        width: 76%;
+        margin-top: 15%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -503,16 +553,22 @@ h4 {
         color: rgb(29, 23, 23);
         font-size: 22px;
     }
-    .edit-cls {
-        width: 370px;
-        height: 360px;
-        margin: 2% auto;
+    .table-responsive th {
+        font-size: 14px;
     }
-    .edit-cls a {
-        width: 90%;
-        height: 40px;
-        padding: 9px;
-        font-size: 16px;
+    .table-responsive td {
+        font-size: 12px;
+    }
+    .table-responsive {
+        width: 100%;
+        height: auto;
+        top: 50px;
+    }
+    .search-listClass {
+        width: 80%;
+        margin-top: 15%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -557,16 +613,22 @@ h4 {
         color: rgb(29, 23, 23);
         font-size: 22px;
     }
-    .edit-cls {
-        width: 370px;
-        height: 360px;
-        margin: 2% auto;
-    }
-    .edit-cls a {
-        width: 90%;
-        height: 40px;
-        padding: 9px;
+    .table-responsive th {
         font-size: 18px;
+    }
+    .table-responsive td {
+        font-size: 15px;
+    }
+    .table-responsive {
+        width: 90%;
+        height: auto;
+        top: 50px;
+    }
+    .search-listClass {
+        width: 74%;
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

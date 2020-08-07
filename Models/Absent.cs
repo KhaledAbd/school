@@ -11,7 +11,9 @@ namespace school.Models
         {
             DateAbsent = DateTime.Now;
         }
+
         [Key]
+        public int Id { get; set; }
         [ForeignKey("StudentNavigation")]
         public int StudentId { get; set; }
         public DateTime DateAbsent { get; set; }

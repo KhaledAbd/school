@@ -3,16 +3,12 @@ $(function() {
     $('#toggle-one').bootstrapToggle();
 })
 
+
+
 //============================================================================================================================================
 //For deleting any row in the table..
 
-$('.table tbody').on('click', '.myDeleteButton', function() {
-    $(this).closest('tr').remove();
-});
-
-
 //=======================================================================================================================================
-document.getElementById("searchInput").focus();
 
 //=======================================================================================================================================
 //This function for table..
@@ -20,24 +16,28 @@ document.getElementById("searchInput").focus();
 /************************************************************************************************************
  *************************************************** AJAX ***************************************************
  ************************************************************************************************************ */
+/*
 function functionForSearchingInTable() {
-    var input, filter, table, tr, td, i, txtValue;
+    var input, filter, table, tr, txtValue;
 
     input = document.getElementById("myInputForSearching");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
 
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    for (i = 1; i < tr.length; i++) {
+        txtValue = tr[1].cells[2].innerText || tr[1].cells[2].textContent;
+        console.log(txtValue);
+        if (txtValue) {
+            if (txtValue.indexOf(filter) > -1) {
                 tr[i].style.display = "";
+                console.log(filter);
             } else {
                 tr[i].style.display = "none";
             }
         }
     }
 }
+
+*/
 //=======================================================================================================================================

@@ -3,16 +3,6 @@
     ViewData["Title"] = "الفصول";
 }
 
-<nav>
-    <a class="logo" href="/Home/Index" tabindex="4">
-        <img src="~/images/letterM.png">
-    </a>
-</nav>
-
-<a asp-action="Logout" asp-controller="Account"><i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="9"></i></a>
-<a asp-action="Index" asp-controller="Account" class="fas fa-user-cog" data-toggle="modal" data-target="#exampleModalForSetting" tabindex="5" title="تغيير كلمة المُرور">
-</a>
-
 <nav class="navbar navbar-expand-sm navbar-dark justify-content-center">
     <ul class="navbar-nav">
         <li class="nav-item list-inline-item">
@@ -23,7 +13,7 @@
             </a>
         </li>
         <li class="nav-item list-inline-item">
-            <a class="nav-link" href="/Home/Index">
+            <a class="nav-link" href="/Stage/Index">
                 <div class="rightIcon">
                     <i class="fas fa-university" title="السنواتُ الدراسيّة"></i>
                 </div>
@@ -35,15 +25,14 @@
 <div class="row2">
     @foreach (var cls in Model)
     {
-        <a asp-action="Index" asp-controller="Student" asp-route-id="@cls.Id" asp- title="الفصل @cls.Id\1">الفصل 1\@cls.Id</a>
-        <a class="edit-class" asp-action="Edit" asp-controller="Class" asp-route-id="@cls.Id">تعديلُ فصلٍ</a>
+        <a asp-action="Index" asp-controller="Student" asp-route-id="@cls.Id" onclick="setClass(@cls.Id, @cls.Name)" asp- title="الفصل @cls.Name\1">@cls.Stage\@cls.Name</a>
     }
 </div>
 
 <div class="classes-op">
     <a class="add-new-class" asp-action="Create" asp-controller="Class">اضافةُ فصلٍ</a>
+    <a class="edit-class" asp-action="ListClass" asp-controller="Class">تعديلُ فصلٍ</a>
 </div>
 
-<!--=================================================================================================================================-->
-<!--This is for modal of the setting icon-->
 <link rel="stylesheet" href="~/css/styleClasses.css" />
+<script src="~/js/custom-classes.js"></script>

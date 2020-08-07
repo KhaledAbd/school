@@ -21,8 +21,6 @@ namespace school.Models
         public virtual DbSet<Stage> Stage { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<User> User { get; set; }
-
-        public virtual DbSet<StudentAbsent> StudentAbsent { get; set; }
 /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

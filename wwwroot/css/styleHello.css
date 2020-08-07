@@ -13,6 +13,10 @@ body {
     min-height: 100vh;
 }
 
+input[type="text"]::placeholder {
+    text-align: left;
+}
+
 @keyframes moveToRight {
     0% {
         transform: translateX(-120px);
@@ -246,47 +250,27 @@ nav .logo img {
 
 /*=============================================== End Navbar ===============================================*/
 
+.left {
+    left: 0;
+    background: #131218da;
+}
 
-/*=============================================== Start Container ===============================================*/
+.right {
+    right: 0;
+    background: #131218da;
+    padding: 0;
+}
 
-.container {
-    width: 400px;
-    height: 200px;
+.centered {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    border-radius: 10px;
-    margin: 15% auto;
-    background-color: rgba(14, 12, 12, 0.77);
-    animation: moveToRight 2s;
 }
 
-.container h4 {
-    color: rgb(65, 95, 160);
-    font-size: 27px;
-    font-family: 'Baloo Paaji 2', cursive;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 20px;
-}
-
-.container a {
-    width: 90%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 40px;
-    padding-left: 40px;
-    color: black;
-    background-color: rgb(65, 95, 160);
-    border-radius: 10px;
-    text-decoration: none;
-    margin-left: 5%;
-    margin-right: 5%;
-    font-size: 20px;
-    font-family: 'Lalezar', cursive;
-}
-
-.container a:hover {
-    transition: 2s;
-    background-color: rgb(86, 129, 221);
+.img-fluid {
+    border-radius: 50%;
 }
 
 
@@ -304,49 +288,60 @@ nav .logo img {
     transform: translate(-50%, -50%);
 }
 
-.loader-div {
-    width: calc(100% - 16px);
-    height: calc(100% - 16px);
-    border: 8px solid #162534;
-}
-
 #modalLabelOfNewPassword {
     margin-left: auto;
     margin-right: auto;
 }
 
-#newPassword,
-#oldPassword {
+
+/*=============================================== Start Container ===============================================*/
+
+.container {
+    height: 180px;
+    width: 320px;
+    background-color: rgba(32, 32, 32, 0.9);
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 20px;
+    animation: moveToLeft 2s;
+}
+
+.container h2 {
+    margin-top: 30px;
+    padding: 4px;
+}
+
+.modal-header .modal-title {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group .col-form-label {
     text-align: end;
+}
+
+.modal-footer {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 /*======================================================================================================================================*/
 
-@media (min-width: 500px) and (max-width: 575px) {
+
+/*
+@media (min-width: 455px) and (max-width: 575px) {
     nav .logo img {
         height: 20px;
         width: 20px;
     }
-    .fa-sign-out-alt,
-    .fa-user-cog {
-        font-size: 15px;
-        left: 4%;
-    }
-    .fa-sign-out-alt {
-        margin-right: 5px;
-    }
-    .fa-user-cog {
-        margin-left: 35px;
-    }
     .container {
-        margin: 40% auto;
-    }
-    .container h4 {
-        font-size: 20px;
-    }
-    .container .startUsingAnchor {
-        font-size: 10px;
+        height: 400px;
+        width: 320px;
     }
 }
 
@@ -355,45 +350,12 @@ nav .logo img {
         height: 22px;
         width: 22px;
     }
-    .fa-sign-out-alt,
-    .fa-user-cog {
-        font-size: 17px;
-        left: 4%;
-    }
-    .fa-sign-out-alt {
-        margin-right: 5px;
-    }
-    .fa-user-cog {
-        margin-left: 35px;
-    }
-    .container {
-        margin: 35% auto;
-    }
-    .container h4 {
-        font-size: 24px;
-    }
-    .container .startUsingAnchor {
-        font-size: 14px;
-    }
 }
 
 @media (min-width: 768px) {
     nav .logo img {
         height: 26px;
         width: 26px;
-    }
-    .fa-sign-out-alt,
-    .fa-user-cog {
-        font-size: 19px;
-    }
-    .container {
-        margin: 25% auto;
-    }
-    .container h4 {
-        font-size: 23px;
-    }
-    .container .startUsingAnchor {
-        font-size: 15px;
     }
 }
 
@@ -402,29 +364,10 @@ nav .logo img {
         height: 22px;
         width: 22px;
     }
-    .fa-sign-out-alt,
-    .fa-user-cog {
-        font-size: 17px;
-        left: 2%;
-    }
-    .fa-sign-out-alt {
-        margin-right: 5px;
-    }
-    .fa-user-cog {
-        margin-left: 35px;
-    }
-    .container {
-        margin: 20% auto;
-    }
-    .container h4 {
-        font-size: 24px;
-    }
-    .container .startUsingAnchor {
-        font-size: 14px;
-    }
 }
 
 @media (min-width: 1200px) {}
+*/
 
 
 /*=============================================== End Container ===============================================*/

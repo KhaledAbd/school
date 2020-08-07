@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using school.Models;
 
 namespace school.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class ClassController : Controller
     {
         private readonly SchoolContext context;
@@ -26,32 +23,30 @@ namespace school.Controllers
 
             Stage stage = await context.Stage.SingleOrDefaultAsync(n => n.StageId == id.Value);
             if (stage != null) {
-                HttpContext.Session.SetString("StageString",stage.NameStage);
+                HttpContext.Session.SetString("StageString", stage.NameStage);
             }
             if (id == null)
             {
                 return View("Index", "Home");
             }
-            return View(await context.Class.Where(c=>c.Id == id).ToListAsync());
+            return View(await context.Class.Where(c => c.Stage == id).ToListAsync());
         }
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["Stage"] = new SelectList(context.Stage, "StageId", "NameStage");
             return View();
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Stage")]Class classStudent)
+        public async Task<IActionResult> Create([Bind("Name")]Class classStudent)
         {
             if (ModelState.IsValid)
             {
+                classStudent.Stage = HttpContext.Session.GetInt32("Stage").Value;
                 await context.Class.AddAsync(classStudent);
                 await context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new { id = classStudent.Stage});
+                return RedirectToAction(nameof(Index), new { id = classStudent.Stage });
             }
-            ViewData["Stage"] = new SelectList(context.Stage, "StageId", "NameStage", classStudent.StageNavigation);
-
             return View(classStudent);
         }
 
@@ -66,7 +61,7 @@ namespace school.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Class cls, int id)
         {
-            if(cls.Id != id)
+            if (cls.Id != id)
             {
                 return NotFound();
             }
@@ -74,10 +69,37 @@ namespace school.Controllers
             {
                 context.Update(cls);
                 await context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), cls.Id);
+                return RedirectToAction(nameof(Index), new { id = cls.Stage });
             }
             ViewData["Stage"] = new SelectList(context.Stage, "StageId", "NameStage", cls.Stage);
             return View(cls);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ListClass()
+        {
+            var stage = HttpContext.Session.GetInt32("Stage");
+            ViewData["stage"] = stage;
+            return View(await context.Class.Where(c => c.Stage == stage).ToListAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cls = await context.Class.SingleOrDefaultAsync(c => c.Id == id);
+            var absents = context.Absent.Where(c => c.StudentNavigation.ClassFk == id);
+            var students = context.Student.Where(s => s.ClassFk == id);
+            if(cls != null) {
+                context.RemoveRange(cls);
+                context.RemoveRange(absents);
+                context.RemoveRange(students);
+                await context.SaveChangesAsync();
+            }
+            else
+            {
+                return Unauthorized();
+            }
+            return RedirectToAction(nameof(ListClass));
+        }
+
     }
 }

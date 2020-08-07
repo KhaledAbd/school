@@ -11,12 +11,9 @@
     <link rel="stylesheet" href="~/css/all.min.css" />
     <link rel="stylesheet" href="~/css/fontawesome.min.css" />
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/styleIndex.css" />
     <link rel="stylesheet" href="~/css/bootstrap-toggle.min.css" />
     <link rel="stylesheet" href="~/css/jqeury-confirm.css" />
-
-
-
+    <link href="~/js/alertifyjs/css/alertify.min.css" rel="stylesheet" />
     <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
     <![endif]-->
@@ -24,6 +21,43 @@
 <body>
     @if (User.Identity.IsAuthenticated)
     {
+        @if (ViewData["isNotAllow"] == null)
+        {
+
+            <nav>
+                <a class="logo" tabindex="2">
+                    <img src="~/images/letterM.png">
+                </a>
+            </nav>
+            @*data-toggle="modal" data-target="#exampleModalForSetting"*@
+
+            <a asp-action="Logout" asp-controller="Account">  <i class="fas fa-sign-out-alt fa-rotate-180" title="تسجيلُ الخُروج" tabindex="4"></i> </a>
+            <a class="fas fa-user-cog" asp-action="AccountInfo" asp-controller="Account" tabindex="3" title="تغيير  البيانات">
+            </a>
+            <!--=================================================================================================================================-->
+            <!--This is for modal of the setting icon-->
+
+            <div class="modal fade" id="exampleModalForSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelOfNewPassword">تعديلُ كلمة المُرور</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="oldPassword" placeholder="كلمةُ المُرور القديمة"><br>
+                                <input type="password" class="form-control" id="newPassword" placeholder="كلمةُ المُرور الجديدة">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">غلقُ الأيقونة</button>
+                            <button type="button" class="btn btn-primary">تعديلُ الآن</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
         @RenderBody()
 
     }
@@ -33,13 +67,13 @@
 
     }
 
+    
     <script src="~/js/jquery-3.4.1.min.js "></script>
-    <script src="~/js/custom-index.js "></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/bootstrap-toggle.min.js"></script>
     <script src="~/js/jquery-confirm.js"></script>
-
+    <script src="~/js/alertifyjs/alertify.min.js"> </script>
 </body>
 </html>

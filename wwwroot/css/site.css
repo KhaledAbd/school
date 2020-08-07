@@ -69,3 +69,186 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(36, 36, 36, 0.9);
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+nav .logo img {
+   height: 29px;
+   width: 29px;
+   margin: 22px auto;
+        display: block;
+        text-align: center;
+}
+
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(36, 36, 36, 0.9);
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+
+    nav .logo img {
+        height: 29px;
+        width: 29px;
+        margin: 22px auto;
+        display: block;
+        text-align: center;
+    }
+
+.fas {
+    font-size: 27px;
+    color: rgb(179, 179, 179);
+}
+
+    .fas:hover {
+        color: rgb(240, 240, 240);
+    }
+
+.fa-sign-out-alt,
+.fa-user-cog {
+    position: fixed;
+    top: 3%;
+    font-size: 20px;
+    color: rgb(65, 95, 160);
+    cursor: pointer;
+}
+
+.fa-sign-out-alt {
+    left: 2%;
+}
+
+.fa-user-cog {
+    left: 7%;
+    background-color: transparent;
+    border: none;
+}
+
+    .fa-sign-out-alt:hover,
+    .fa-user-cog:hover {
+        color: rgb(116, 133, 170);
+    }
+
+
+
+
+
+@media (min-width: 500px) and (max-width: 575px) {
+    ::-webkit-input-placeholder {
+        /* Edge */
+        font-size: 13px;
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        font-size: 13px;
+    }
+
+    ::placeholder {
+        font-size: 13px;
+    }
+
+    nav .logo img {
+        height: 20px;
+        width: 20px;
+    }
+
+    .navbar {
+        top: 9%;
+        width: 80%;
+    }
+
+    .fa-sign-out-alt,
+    .fa-user-cog {
+        font-size: 15px;
+        left: 4%;
+    }
+
+    .fa-sign-out-alt {
+        margin-right: 5px;
+    }
+
+    .fa-user-cog {
+        margin-left: 35px;
+    }
+}
+
+@media (min-width: 768px) {
+    ::-webkit-input-placeholder {
+        /* Edge */
+        font-size: 14px;
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        font-size: 14px;
+    }
+
+    ::placeholder {
+        font-size: 14px;
+    }
+
+    nav .logo img {
+        height: 26px;
+        width: 26px;
+    }
+
+    .navbar {
+        width: 60%;
+        top: 70px;
+    }
+
+    .fa-sign-out-alt,
+    .fa-user-cog {
+        font-size: 17px;
+        left: 2.2%;
+    }
+@media (min-width: 992px) {
+    ::-webkit-input-placeholder {
+        /* Edge */
+        font-size: 15px;
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        font-size: 15px;
+    }
+
+    ::placeholder {
+        font-size: 15px;
+    }
+
+    nav .logo img {
+        height: 29px;
+        width: 29px;
+    }
+
+    .navbar {
+        top: 71px;
+        width: 60%;
+    }
+
+    .fa-sign-out-alt,
+    .fa-user-cog {
+        font-size: 19px;
+        left: 2%;
+    }
+
+    .fa-sign-out-alt {
+        margin-right: 5px;
+    }
+
+    .fa-user-cog {
+        margin-left: 35px;
+    }
+
+}
+
