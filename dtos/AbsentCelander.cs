@@ -47,4 +47,5 @@ namespace school.dtos
         }
         public string[] Students { get; set;}
     }
+    /////Algorithem for show student Absent from DataContext To Matrix DataStructure
 }
